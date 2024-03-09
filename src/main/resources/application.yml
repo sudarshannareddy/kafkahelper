@@ -1,0 +1,30 @@
+spring:
+   kafka:
+   
+     bootstrap-servers: dgm010cd4.albertsons.com:9093,dgm010cd5.albertsons.com:9093,dgm010cd6.albertsons.com:9093
+     
+     consumer:
+        auto-offset-reset: earliest
+        isolation-level: read_committed
+        enable-auto-commit: false
+        group-id: test
+        
+     producer:
+      acks: all
+      transaction-timeout: 10000
+      request-timeout: 2000
+      retries: 3
+      metadata-age: 3000
+      bootstrap-servers: dgm010cd4.albertsons.com:9093,dgm010cd5.albertsons.com:9093,dgm010cd6.albertsons.com:9093
+      enable.idempotence: true
+      max.in.flight.requests.per.connection: 5
+      
+     properties:
+       sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="cped00sp@safeway.com" password="*mdeFilABs-zR99$d";
+       sasl.mechanism: SCRAM-SHA-256
+       security:
+         protocol: SASL_SSL
+       ssl.endpoint.identification.algorithm:
+       
+server:
+  port: 8081        

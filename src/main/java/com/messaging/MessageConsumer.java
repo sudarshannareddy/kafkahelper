@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Component
 public class MessageConsumer {
 
-    @KafkaListener(topics = "ESCO-CONTAINERTEST-TOPIC", groupId = "test", containerFactory = "lotEventKafkaListenerContainerFactory")
+    @KafkaListener(topics = "ESCO-CONTAINERTEST-TOPIC", groupId = "test", containerFactory = "kafkaListenerContainerFactory")
     public void consumeMessage2(@Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition, @Payload String message) {
         System.out.println("Topic=ESCO-CONTAINERTEST-TOPIC, Message2=" + message + ", partition=" + partition + ", time=" + LocalDateTime.now());
     }

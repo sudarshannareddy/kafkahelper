@@ -28,17 +28,17 @@ public class KafkaConsumersConfig {
     private KafkaProperties kafkaProperties;
 
     @Bean
-    public ConsumerFactory<String, String> lotEventConsumerFactory() {
-        final KafkaGenericDeserializer<String> casOutBoundEventDeserializer = new KafkaGenericDeserializer<>(new TypeReference<String>() {
+    public ConsumerFactory<String, String> consumerFactory() {
+        final KafkaGenericDeserializer<String> kafkaGenericDeserializer = new KafkaGenericDeserializer<>(new TypeReference<String>() {
         });
         Map<String, Object> consumerConfig = kafkaProperties.buildConsumerProperties();
-        return new DefaultKafkaConsumerFactory<>(consumerConfig, new StringDeserializer(), casOutBoundEventDeserializer);
+        return new DefaultKafkaConsumerFactory<>(consumerConfig, new StringDeserializer(), kafkaGenericDeserializer);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> lotEventKafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(lotEventConsumerFactory());
+        factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 

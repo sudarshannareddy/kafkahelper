@@ -23,13 +23,13 @@ public class KafkaProducerConfig {
     private KafkaProperties kafkaProperties;
 
     @Bean
-    public ProducerFactory<String, String> lotProducerConfigFactory() {
+    public ProducerFactory<String, String> producerFactory() {
         DefaultKafkaProducerFactory<String, String> producerFactory = new DefaultKafkaProducerFactory<>(kafkaProperties.buildProducerProperties(), new StringSerializer(), new StringSerializer());
         return producerFactory;
     }
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<>(lotProducerConfigFactory());
+        return new KafkaTemplate<>(producerFactory());
     }
 }

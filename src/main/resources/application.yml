@@ -6,8 +6,9 @@ spring:
      consumer:
         auto-offset-reset: earliest
         isolation-level: read_committed
-        enable-auto-commit: false
+        enable-auto-commit: true
         group-id: test
+        bootstrap-servers: dgm010cd4.albertsons.com:9093,dgm010cd5.albertsons.com:9093,dgm010cd6.albertsons.com:9093
         
      producer:
       acks: all
